@@ -54,7 +54,6 @@ export default class Collapse {
   }
 
   setData(data) {
-		console.log(data, this._data, 1)
     this._data = { ...this._data, ...data };
   }
 
@@ -168,7 +167,7 @@ export default class Collapse {
    */
   save(toolsContent) {
     const data = this.ui.data;
-    console.log("collapse save: ", this.ui, this.ui.data, this.api, this._data, 2);
+    console.log("collapse save: ", toolsContent, this.ui, this.ui.data, this.api, this._data, 2);
     return data;
   }
 
