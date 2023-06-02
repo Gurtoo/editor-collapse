@@ -167,11 +167,9 @@ export default class Collapse {
    */
   save(toolsContent) {
     const data = this.ui.data;
-		const titleBlock = toolsContent.querySelector('.cdx-collapse-title')
 
+		const titleBlock = toolsContent.querySelector('.cdx-collapse-title');
 		const title = titleBlock.value;
-		console.log(title, 'das')
-    console.log("collapse save: ", toolsContent, this.ui, this.ui.data, this.api, this._data, 2);
 
     return {
 			...data,
