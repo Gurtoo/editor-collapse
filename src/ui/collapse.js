@@ -33,13 +33,13 @@ export default class Collapse {
 
     this.nodes = {
       title: make("input", this.CSS.title, {
-        placeholder: "折叠块标题",
+        placeholder: "Заголовок",
         "data-skip-plus-button": true,
       }),
       contentWrapper: make("div", this.CSS.content),
       content: make("div", this.CSS.contentInner, {
         contentEditable: true,
-        placeholder: "折叠块内容",
+        placeholder: "Содержимое",
         "data-skip-plus-button": true,
       }),
 
