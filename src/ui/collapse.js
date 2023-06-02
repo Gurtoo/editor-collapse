@@ -141,6 +141,7 @@ export default class Collapse {
   drawView(data) {
     this._assignData(data);
     const wrapperEl = make("div", [this.CSS.block, this.CSS.wrapper]);
+    this.nodes.title.innerHTML = this._data.title;
     this.nodes.content.innerHTML = this._data.content;
 
     const collapseWrapperEl = make("div", this.CSS.collapseWrapper);

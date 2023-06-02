@@ -200,10 +200,10 @@ export default class ColumnCollapse {
     el.style.display = visible ? "inline-flex" : "none";
 
     if (collapse) {
-      el.innerHTML = `${ArrowUpIcon} 收起`;
+      el.innerHTML = `${ArrowUpIcon} убрать`;
       this.isFolded = true;
     } else {
-      el.innerHTML = `${ArrowIcon} 展开`;
+      el.innerHTML = `${ArrowIcon} развертывать`;
       this.isFolded = false;
     }
   }
