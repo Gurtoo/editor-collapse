@@ -197,7 +197,7 @@ export default class Collapse {
 					<path d="M17.5391 16.2695L15.2695 18.5391L13 16.2695" stroke="#007BFF" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
 				</svg>
 						`,
-			title: "Аккордион",
+			title: "Аккордеон",
     };
   }
 }
