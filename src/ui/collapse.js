@@ -129,8 +129,6 @@ export default class Collapse {
     this._data = data;
     const { title, content } = this._data;
 
-		console.log(this.nodes.title, 2)
-
     this.nodes.title.value = title;
     this.nodes.content.innerHTML = content;
   }
