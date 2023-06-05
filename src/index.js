@@ -36,12 +36,12 @@ export default class Collapse {
   constructor({ data, config, api }) {
     this.api = api;
 
-		console.log({ data, config, api }, 9)
-
 		const localData = {
 			...data,
 			mode: 'row'
 		}
+
+		console.log(data, localData, isValidData(localData), 9)
 
     const defaultData = {
       mode: MODE.ROW,
