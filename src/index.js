@@ -45,7 +45,7 @@ export default class Collapse {
 
     const defaultData = {
       mode: MODE.ROW,
-      title: "",
+			title: "",
       content: "",
     };
 
@@ -125,12 +125,12 @@ export default class Collapse {
 
     const settings = [
       {
-        title: "Режим расширения",
+				title: "Режим расширения",
         action: MODE.ROW,
         icon: RowModeIcon,
       },
       {
-        title: "Режим предварительного просмотра",
+				title: "Режим предварительного просмотра",
         action: MODE.COLUMN,
         icon: ColumnModeIcon,
       },
@@ -199,7 +199,7 @@ export default class Collapse {
 					<path d="M17.5391 16.2695L15.2695 18.5391L13 16.2695" stroke="#007BFF" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
 				</svg>
 						`,
-      title: "Аккордион",
+			title: "Аккордион",
     };
   }
 }
