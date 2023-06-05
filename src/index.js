@@ -49,8 +49,6 @@ export default class Collapse {
 
     this._data = isValidData(localData) ? localData : defaultData;
 
-		console.log(this._data, isValidData(localData), 9)
-
     this.ui = new UI({
       data: this._data,
       api,
