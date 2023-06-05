@@ -119,8 +119,8 @@ export default class Collapse {
    * @public
    */
   renderSettings() {
-    // const Wrapper = make("div");
-		//
+    const Wrapper = make("div");
+
     // const settings = [
     //   {
 		// 		title: "Режим расширения",
@@ -133,7 +133,7 @@ export default class Collapse {
     //     icon: ColumnModeIcon,
     //   },
     // ];
-		//
+
     // settings.forEach((item) => {
     //   const itemEl = make("div", this.CSS.settingsButton, {
     //     innerHTML: item.icon,
@@ -160,8 +160,8 @@ export default class Collapse {
 		//
     //   Wrapper.appendChild(itemEl);
     // });
-		//
-    // return Wrapper;
+
+    return Wrapper;
   }
 
   /**
