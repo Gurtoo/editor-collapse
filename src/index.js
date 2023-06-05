@@ -38,13 +38,18 @@ export default class Collapse {
 
 		console.log({ data, config, api }, 9)
 
+		const localData = {
+			...data,
+			mode: 'row'
+		}
+
     const defaultData = {
       mode: MODE.ROW,
       title: "",
       content: "",
     };
 
-    this._data = isValidData(data) ? data : defaultData;
+    this._data = isValidData(localData) ? localData : defaultData;
 
     this.ui = new UI({
       data: this._data,
