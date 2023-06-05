@@ -40,18 +40,18 @@ export default class ColumnCollapse {
       collapseWrapper: make("div", this.CSS.collapseWrapper),
       contentWrapper: make("div", this.CSS.content),
       toggleLabel: make("label", this.CSS.labelToggle, {
-        innerHTML: `${ArrowIcon} 展开`,
+        innerHTML: `${ArrowIcon} развертывать`,
         contentEditable: false,
       }),
       title: make("div", this.CSS.titleInput, {
         contentEditable: true,
         "data-skip-plus-button": true,
-        placeholder: "折叠块标题",
+        placeholder: "Название складывающегося блока",
       }),
       content: make("span", this.CSS.contentInner, {
         contentEditable: true,
         "data-skip-plus-button": true,
-        placeholder: "折叠块内容",
+        placeholder: "Содержимое складывающегося блока",
       }),
     };
 

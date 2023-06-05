@@ -41,8 +41,6 @@ export default class Collapse {
 			mode: 'row'
 		}
 
-		console.log(data, localData, isValidData(localData), 9)
-
     const defaultData = {
       mode: MODE.ROW,
 			title: "",
@@ -50,6 +48,8 @@ export default class Collapse {
     };
 
     this._data = isValidData(localData) ? localData : defaultData;
+
+		console.log(this._data, isValidData(localData), 9)
 
     this.ui = new UI({
       data: this._data,
@@ -121,49 +121,49 @@ export default class Collapse {
    * @public
    */
   renderSettings() {
-    const Wrapper = make("div");
-
-    const settings = [
-      {
-				title: "Режим расширения",
-        action: MODE.ROW,
-        icon: RowModeIcon,
-      },
-      {
-				title: "Режим предварительного просмотра",
-        action: MODE.COLUMN,
-        icon: ColumnModeIcon,
-      },
-    ];
-
-    settings.forEach((item) => {
-      const itemEl = make("div", this.CSS.settingsButton, {
-        innerHTML: item.icon,
-      });
-
-      if (item.action === MODE.ROW) {
-        this._data.mode === MODE.ROW
-          ? itemEl.classList.add(this.CSS.settingsButtonActive)
-          : itemEl.classList.remove(this.CSS.settingsButtonActive);
-      } else {
-        this._data.mode === MODE.COLUMN
-          ? itemEl.classList.add(this.CSS.settingsButtonActive)
-          : itemEl.classList.remove(this.CSS.settingsButtonActive);
-      }
-
-      itemEl.addEventListener("click", () => {
-        this._data.mode = item.action;
-        this.reRender(this._data);
-      });
-
-      this.api.tooltip.onHover(itemEl, item.title, {
-        placement: "top",
-      });
-
-      Wrapper.appendChild(itemEl);
-    });
-
-    return Wrapper;
+    // const Wrapper = make("div");
+		//
+    // const settings = [
+    //   {
+		// 		title: "Режим расширения",
+    //     action: MODE.ROW,
+    //     icon: RowModeIcon,
+    //   },
+    //   {
+		// 		title: "Режим предварительного просмотра",
+    //     action: MODE.COLUMN,
+    //     icon: ColumnModeIcon,
+    //   },
+    // ];
+		//
+    // settings.forEach((item) => {
+    //   const itemEl = make("div", this.CSS.settingsButton, {
+    //     innerHTML: item.icon,
+    //   });
+		//
+    //   if (item.action === MODE.ROW) {
+    //     this._data.mode === MODE.ROW
+    //       ? itemEl.classList.add(this.CSS.settingsButtonActive)
+    //       : itemEl.classList.remove(this.CSS.settingsButtonActive);
+    //   } else {
+    //     this._data.mode === MODE.COLUMN
+    //       ? itemEl.classList.add(this.CSS.settingsButtonActive)
+    //       : itemEl.classList.remove(this.CSS.settingsButtonActive);
+    //   }
+		//
+    //   itemEl.addEventListener("click", () => {
+    //     this._data.mode = item.action;
+    //     this.reRender(this._data);
+    //   });
+		//
+    //   this.api.tooltip.onHover(itemEl, item.title, {
+    //     placement: "top",
+    //   });
+		//
+    //   Wrapper.appendChild(itemEl);
+    // });
+		//
+    // return Wrapper;
   }
 
   /**
