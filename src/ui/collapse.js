@@ -39,7 +39,7 @@ export default class Collapse {
       contentWrapper: make("div", this.CSS.content),
       content: make("div", this.CSS.contentInner, {
         contentEditable: true,
-        placeholder: "Содержимое",
+        placeholder: "Содержимое. Чтобы перейти на новую строку нажмите shift+enter",
         "data-skip-plus-button": true,
       }),
 
