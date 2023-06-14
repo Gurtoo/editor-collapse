@@ -64,9 +64,7 @@ export default class Collapse {
 
 	static get pasteConfig() {
 		return {
-			patterns: {
-				collapse: ''
-			}
+			tags: ["text/plain", "text/html", "text/rtf", "Files"]
 		}
 	}
 
@@ -81,10 +79,11 @@ export default class Collapse {
     // }
   }
 
-	sanitize(html) {
-		console.log(html, 'sanitize')
-
-		return html
+	static get sanitize(){
+		return {
+			url: false, // disallow HTML
+			caption: {} // only tags from Inline Toolbar
+		}
 	}
 
   /**
