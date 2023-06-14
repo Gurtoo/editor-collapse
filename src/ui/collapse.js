@@ -40,6 +40,7 @@ export default class Collapse {
       content: make("textarea", this.CSS.contentInner, {
         placeholder: "Содержимое. Чтобы перейти на новую строку нажмите shift+enter",
         "data-skip-plus-button": true,
+				rows: '6',
       }),
 
       toggleLabel: make("label", this.CSS.labelToggle, {
@@ -86,7 +87,7 @@ export default class Collapse {
       this.setData({ title });
     });
 
-    this.api.listeners.on(this.nodes.content, "input", () => {
+    this.api.listeners.on(this.nodes.content, "textarea", () => {
       const content = this.nodes.content.innerHTML;
       this.setData({ content });
     });

@@ -198,11 +198,14 @@ export default class Collapse {
     const data = this.ui.data;
 
 		const titleBlock = toolsContent.querySelector('.cdx-collapse-title');
+		const contentBlock = toolsContent.querySelector('.cdx-collapse-content');
 		const title = titleBlock.value;
+		const content = contentBlock.value;
 
     return {
 			...data,
-			title
+			title,
+			content,
 		};
   }
 

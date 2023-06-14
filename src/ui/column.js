@@ -103,7 +103,7 @@ export default class ColumnCollapse {
       setData({ title });
     });
 
-    this.api.listeners.on(this.nodes.content, "input", () => {
+    this.api.listeners.on(this.nodes.content, "textarea", () => {
       const content = this.nodes.content.innerHTML;
       setData({ content });
     });

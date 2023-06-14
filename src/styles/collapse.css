@@ -74,15 +74,12 @@
 .cdx-collapse-content .content-inner {
   position: relative;
   font-size: 1em;
-  border-left: 1px dashed;
-  border-left-color: #dddfe2;
-  margin-left: 6px;
-  padding: 6px 0;
-  padding-left: 22px;
-  padding-bottom: 26px;
+  border: 1px solid rgba(201,201,204,.48);
+  padding: 6px 0 26px 22px;
   line-height: 1.6em;
   outline: none;
   cursor: text;
+  width: 100%;
 }
 
 .cdx-collapse-content .content-inner[placeholder]:empty:before {
