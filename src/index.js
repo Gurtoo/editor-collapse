@@ -62,6 +62,31 @@ export default class Collapse {
     this._data = { ...this._data, ...data };
   }
 
+	static get pasteConfig() {
+		return {
+			patterns: {
+				collapse: ''
+			}
+		}
+	}
+
+	onPaste(event){
+		console.log(event, 'onPaste')
+    // switch (event.type){
+    //   case 'tag':
+    //     const imgTag = event.detail.data;
+		//
+    //     this._createImage(imgTag.src);
+    //     break;
+    // }
+  }
+
+	sanitize(html) {
+		console.log(html, 'sanitize')
+
+		return html
+	}
+
   /**
    * Allow to press Enter inside the Header input
    * @returns {boolean}
