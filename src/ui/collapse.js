@@ -37,8 +37,7 @@ export default class Collapse {
         "data-skip-plus-button": true,
       }),
       contentWrapper: make("div", this.CSS.content),
-      content: make("div", this.CSS.contentInner, {
-        contentEditable: true,
+      content: make("textarea", this.CSS.contentInner, {
         placeholder: "Содержимое. Чтобы перейти на новую строку нажмите shift+enter",
         "data-skip-plus-button": true,
       }),
@@ -130,7 +129,7 @@ export default class Collapse {
     const { title, content } = this._data;
 
     this.nodes.title.value = title;
-    this.nodes.content.innerHTML = content;
+    this.nodes.content.value = content;
   }
 
   /**

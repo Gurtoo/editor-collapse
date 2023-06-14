@@ -146,7 +146,7 @@ export default class ColumnCollapse {
           contentEditable: false,
         });
       }
-      // 必须展开才能编辑
+
       this._toggleContentEditable(false);
       this.nodes.contentWrapper.appendChild(this.nodes.toggleLabel);
       this._toggleExpandLabel(true, false);

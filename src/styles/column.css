@@ -54,7 +54,6 @@
   font-style: italic;
 }
 
-/* span 标签在设置成 contentEditable 后光标会出现问题, see https://www.google.com/search?sxsrf=ALeKk03wMsY5DAje6aM3Rt52CbE0YBFEKQ%3A1611904360046&ei=aLUTYPC_AtHrwQOloLfQCA&q=contenteditable+span+cursor+not+show&oq=contenteditable+span+cursor+not+show&gs_lcp=CgZwc3ktYWIQAzIFCCEQoAE6BAgAEEc6BAgjECc6AggAOgQIABBDOgQIABAMOgUIABDLAToECAAQHjoGCAAQBRAeOgYIABAIEB46BwghEAoQoAFQvAdY6S1g8TFoAHADeACAAYEEiAHYLZIBDDAuNC4xMC40LjEuMpgBAKABAaoBB2d3cy13aXrIAQjAAQE&sclient=psy-ab&ved=0ahUKEwjwk6vWy8DuAhXRdXAKHSXQDYoQ4dUDCA0&uact=5*/
 .cdx-column-collapse-content .content-inner:focus[placeholder]:empty:before {
   border-left: 1px solid grey;
   animation: blink-animation 0.8s infinite;
