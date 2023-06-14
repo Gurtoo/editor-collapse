@@ -83,13 +83,13 @@ export default class Collapse {
    */
   _initListeners(setData) {
     this.api.listeners.on(this.nodes.title, "input", () => {
-      const title = this.nodes.title.innerHTML;
+      const title = this.nodes.title.value;
       this.setData({ title });
     });
 
     this.api.listeners.on(this.nodes.content, "textarea", () => {
 			console.log(this.nodes.content, 98)
-      const content = this.nodes.content.innerHTML;
+      const content = this.nodes.content.value;
       this.setData({ content });
     });
 
@@ -142,9 +142,8 @@ export default class Collapse {
   drawView(data) {
     this._assignData(data);
     const wrapperEl = make("div", [this.CSS.block, this.CSS.wrapper]);
-    this.nodes.title.innerHTML = this._data.title;
-		console.log(this.nodes, 97)
-    this.nodes.content.innerHTML = this._data.content;
+    this.nodes.title.value = this._data.title;
+    this.nodes.content.value = this._data.content;
 
     const collapseWrapperEl = make("div", this.CSS.collapseWrapper);
     const headerEl = make("div", this.CSS.header);
@@ -163,9 +162,8 @@ export default class Collapse {
   }
 
   get data() {
-		console.log(this.nodes, 96)
-    const title = this.nodes.title.innerHTML;
-    const content = this.nodes.content.innerHTML;
+    const title = this.nodes.title.value;
+    const content = this.nodes.content.value;
     const data = { title, content };
 
     this.setData(data);
