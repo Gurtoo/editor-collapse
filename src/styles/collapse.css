@@ -75,6 +75,7 @@
   position: relative;
   font-size: 1em;
   border: 1px solid rgba(201,201,204,.48);
+  margin: 0;
   padding: 6px 0 26px 22px;
   line-height: 1.6em;
   outline: none;

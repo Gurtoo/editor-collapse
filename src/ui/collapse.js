@@ -88,6 +88,7 @@ export default class Collapse {
     });
 
     this.api.listeners.on(this.nodes.content, "textarea", () => {
+			console.log(this.nodes.content, 98)
       const content = this.nodes.content.innerHTML;
       this.setData({ content });
     });
@@ -142,6 +143,7 @@ export default class Collapse {
     this._assignData(data);
     const wrapperEl = make("div", [this.CSS.block, this.CSS.wrapper]);
     this.nodes.title.innerHTML = this._data.title;
+		console.log(this.nodes, 97)
     this.nodes.content.innerHTML = this._data.content;
 
     const collapseWrapperEl = make("div", this.CSS.collapseWrapper);
@@ -161,6 +163,7 @@ export default class Collapse {
   }
 
   get data() {
+		console.log(this.nodes, 96)
     const title = this.nodes.title.innerHTML;
     const content = this.nodes.content.innerHTML;
     const data = { title, content };

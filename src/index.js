@@ -202,6 +202,8 @@ export default class Collapse {
 		const title = titleBlock.value;
 		const content = contentBlock.value;
 
+		console.log(data, content, contentBlock, 99)
+
     return {
 			...data,
 			title,
