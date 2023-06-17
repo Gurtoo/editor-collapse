@@ -25,201 +25,218 @@ import { isValidData } from "./helper";
  * @description Tool's input and output data format
  */
 export default class Collapse {
-  /**
-   * Render plugin`s main Element and fill it with saved data
-   *
-   * @param {{data: DelimiterData, config: object, api: object}}
-   *   data — previously saved data
-   *   config - user config for Tool
-   *   api - Editor.js API
-   */
-  constructor({ data, config, api }) {
-    this.api = api;
-
-		this.renderedElement = null;
+	/**
+	 * Render plugin`s main Element and fill it with saved data
+	 *
+	 * @param {{data: DelimiterData, config: object, api: object}}
+	 *   data — previously saved data
+	 *   config - user config for Tool
+	 *   api - Editor.js API
+	 */
+	constructor({ data, config, api }) {
+		this.api = api;
 
 		const localData = {
 			...data,
 			mode: 'row'
 		}
 
-    const defaultData = {
-      mode: MODE.ROW,
+		const defaultData = {
+			mode: MODE.ROW,
 			title: "",
-      content: "",
-    };
+			content: "",
+		};
 
-    this._data = isValidData(localData) ? localData : defaultData;
+		this._data = isValidData(localData) ? localData : defaultData;
 
-    this.ui = new UI({
-      data: this._data,
-      api,
-      setData: this.setData.bind(this),
-    });
+		this.ui = new UI({
+			data: this._data,
+			api,
+			setData: this.setData.bind(this),
+		});
 
-    this.element = null;
-  }
+		this.element = null;
+	}
 
-  setData(data) {
-    this._data = { ...this._data, ...data };
-  }
+	setData(data) {
+		this._data = { ...this._data, ...data };
+	}
 
-	static get sanitize(){
+	static get sanitize() {
 		return {
 			url: false, // disallow HTML
 			caption: {} // only tags from Inline Toolbar
 		}
 	}
 
-  /**
-   * Allow to press Enter inside the Header input
-   * @returns {boolean}
-   * @public
-   */
-  static get enableLineBreaks() {
-    return false;
-  }
-
-  /**
-   * @return {object} - Collapse Tool styles
-   * @constructor
-   */
-  get CSS() {
-    return {
-      settingsButton: this.api.styles.settingsButton,
-      settingsButtonActive: this.api.styles.settingsButtonActive,
-    };
-  }
-
+	/**
+	 * Handle the paste event and update the content
+	 * @param {ClipboardEvent} event - The paste event
+	 * @private
+	 */
 	handlePaste(event) {
-		event.preventDefault();
-		const text = event.clipboardData.getData('text/plain');
-		this.data.text = text;
+		const clipboardData = event.clipboardData || window.clipboardData;
+		const pastedText = clipboardData.getData("text");
 
-		// paste work by div
-		const quote = this.renderedElement.querySelector(`.${this.CSS.text}`);
-		if (quote) {
-			quote.innerText = text;
-		}
+		// Update the content with the pasted text
+		this.setData({ content: pastedText });
+
+		// Re-render the plugin view
+		this.reRender();
 	}
 
-  /**
-   * Return Tool's view
-   * @returns {HTMLDivElement}
-   * @public
-   */
-  render() {
-    this.element = this.ui.drawView(this._data);
+	/**
+	 * Update the content when the text changes
+	 * @param {Event} event - The input/change event
+	 * @private
+	 */
+	handleTextChange(event) {
+		const newText = event.target.value;
 
-		this.renderedElement = this.element;
+		// Update the content with the new text
+		this.setData({ content: newText });
 
-		this.api.listeners.on(this.renderedElement, 'paste', (event) => this.handlePaste(event));
+		// Re-render the plugin view
+		this.reRender();
+	}
 
-    return this.element;
-  }
+	/**
+	 * Allow to press Enter inside the Header input
+	 * @returns {boolean}
+	 * @public
+	 */
+	static get enableLineBreaks() {
+		return false;
+	}
 
-  /**
-   * reRender based on new data
-   * @public
-   *
-   * @return {HTMLDivElement}
-   */
-  reRender() {
-    this.replaceElement(this.ui.drawView(this._data));
-  }
+	/**
+	 * @return {object} - Collapse Tool styles
+	 * @constructor
+	 */
+	get CSS() {
+		return {
+			settingsButton: this.api.styles.settingsButton,
+			settingsButtonActive: this.api.styles.settingsButtonActive,
+		};
+	}
 
-  /**
-   * replace element wrapper with new html element
-   * @param {HTMLElement} node
-   */
-  replaceElement(node) {
-    this.element.replaceWith(node);
-    this.element = node;
+	/**
+	 * Return Tool's view
+	 * @returns {HTMLDivElement}
+	 * @public
+	 */
+	render() {
+		this.element = this.ui.drawView(this._data);
 
-    this.api.tooltip.hide();
-    this.api.toolbar.close();
-  }
+		// Attach event listeners for paste and text change
+		this.element.addEventListener("paste", this.handlePaste.bind(this));
+		this.ui?.contentInput?.addEventListener("input", this.handleTextChange.bind(this));
 
-  /**
-   * render Setting buttons
-   * @public
-   */
-  renderSettings() {
-    const Wrapper = make("div");
+		return this.element;
+	}
 
-    // const settings = [
-    //   {
+	/**
+	 * reRender based on new data
+	 * @public
+	 *
+	 * @return {HTMLDivElement}
+	 */
+	reRender() {
+		this.replaceElement(this.ui.drawView(this._data));
+	}
+
+	/**
+	 * replace element wrapper with new html element
+	 * @param {HTMLElement} node
+	 */
+	replaceElement(node) {
+		this.element.replaceWith(node);
+		this.element = node;
+
+		this.api.tooltip.hide();
+		this.api.toolbar.close();
+	}
+
+	/**
+	 * render Setting buttons
+	 * @public
+	 */
+	renderSettings() {
+		const Wrapper = make("div");
+
+		// const settings = [
+		//   {
 		// 		title: "Режим расширения",
-    //     action: MODE.ROW,
-    //     icon: RowModeIcon,
-    //   },
-    //   {
+		//     action: MODE.ROW,
+		//     icon: RowModeIcon,
+		//   },
+		//   {
 		// 		title: "Режим предварительного просмотра",
-    //     action: MODE.COLUMN,
-    //     icon: ColumnModeIcon,
-    //   },
-    // ];
+		//     action: MODE.COLUMN,
+		//     icon: ColumnModeIcon,
+		//   },
+		// ];
 
-    // settings.forEach((item) => {
-    //   const itemEl = make("div", this.CSS.settingsButton, {
-    //     innerHTML: item.icon,
-    //   });
+		// settings.forEach((item) => {
+		//   const itemEl = make("div", this.CSS.settingsButton, {
+		//     innerHTML: item.icon,
+		//   });
 		//
-    //   if (item.action === MODE.ROW) {
-    //     this._data.mode === MODE.ROW
-    //       ? itemEl.classList.add(this.CSS.settingsButtonActive)
-    //       : itemEl.classList.remove(this.CSS.settingsButtonActive);
-    //   } else {
-    //     this._data.mode === MODE.COLUMN
-    //       ? itemEl.classList.add(this.CSS.settingsButtonActive)
-    //       : itemEl.classList.remove(this.CSS.settingsButtonActive);
-    //   }
+		//   if (item.action === MODE.ROW) {
+		//     this._data.mode === MODE.ROW
+		//       ? itemEl.classList.add(this.CSS.settingsButtonActive)
+		//       : itemEl.classList.remove(this.CSS.settingsButtonActive);
+		//   } else {
+		//     this._data.mode === MODE.COLUMN
+		//       ? itemEl.classList.add(this.CSS.settingsButtonActive)
+		//       : itemEl.classList.remove(this.CSS.settingsButtonActive);
+		//   }
 		//
-    //   itemEl.addEventListener("click", () => {
-    //     this._data.mode = item.action;
-    //     this.reRender(this._data);
-    //   });
+		//   itemEl.addEventListener("click", () => {
+		//     this._data.mode = item.action;
+		//     this.reRender(this._data);
+		//   });
 		//
-    //   this.api.tooltip.onHover(itemEl, item.title, {
-    //     placement: "top",
-    //   });
+		//   this.api.tooltip.onHover(itemEl, item.title, {
+		//     placement: "top",
+		//   });
 		//
-    //   Wrapper.appendChild(itemEl);
-    // });
+		//   Wrapper.appendChild(itemEl);
+		// });
 
-    return Wrapper;
-  }
+		return Wrapper;
+	}
 
-  /**
-   * Extract Tool's data from the view
-   * @param {HTMLDivElement} toolsContent - Paragraph tools rendered view
-   * @returns {DelimiterData} - saved data
-   * @public
-   */
-  save(toolsContent) {
-    const data = this.ui.data;
+	/**
+	 * Extract Tool's data from the view
+	 * @param {HTMLDivElement} toolsContent - Paragraph tools rendered view
+	 * @returns {DelimiterData} - saved data
+	 * @public
+	 */
+	save(toolsContent) {
+		const data = this.ui.data;
 
-    return {
+		return {
 			...data,
 		};
-  }
+	}
 
-  /**
-   * Get Tool toolbox settings
-   * icon - Tool icon's SVG
-   * title - title to show in toolbox
-   *
-   * @return {{icon: string, title: string}}
-   */
-  static get toolbox() {
-    return {
-      icon: `
+	/**
+	 * Get Tool toolbox settings
+	 * icon - Tool icon's SVG
+	 * title - title to show in toolbox
+	 *
+	 * @return {{icon: string, title: string}}
+	 */
+	static get toolbox() {
+		return {
+			icon: `
 				<svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
 					<path d="M5.6001 2.39844C4.4951 2.39844 3.6001 3.29344 3.6001 4.39844V20.3984C3.6001 21.5034 4.4951 22.3984 5.6001 22.3984H11.6001C12.1524 22.3984 12.6001 21.9507 12.6001 21.3984C12.6001 20.8462 12.1524 20.3984 11.6001 20.3984H5.6001V16.3984H19.6001V14.3984H5.6001V10.3984H17.6001V14.3984L19.6001 16.3984V4.39844C19.6001 3.29344 18.7051 2.39844 17.6001 2.39844H5.6001ZM5.6001 4.39844H17.6001V8.39844H5.6001V4.39844Z" stroke-width="0" fill="#007BFF"/>
 					<path d="M17.5391 16.2695L15.2695 18.5391L13 16.2695" stroke="#007BFF" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
 				</svg>
 						`,
 			title: "Аккордеон",
-    };
-  }
+		};
+	}
 }

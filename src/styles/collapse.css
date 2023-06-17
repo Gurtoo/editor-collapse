@@ -1,90 +1,92 @@
 .cdx-collapse-wrapper {
-  margin-bottom: 1.2rem;
+    margin-bottom: 1.2rem;
 }
 
 .cdx-collapse-header {
-  display: flex;
-  align-items: center;
-  padding: 0 0 6px;
+    display: flex;
+    align-items: center;
+    padding: 0 0 6px;
 }
 
 .cdx-collapse-title {
-  outline: none;
-  box-sizing: border-box;
-  margin: 0;
-  padding: 5px;
-  font-size: 16px;
-  font-weight: bold;
-  font-variant: tabular-nums;
-  list-style: none;
-  font-feature-settings: "tnum";
-  position: relative;
-  display: inline-block;
-  width: 60%;
-  height: 32px;
-  border: none;
-  line-height: 1.2;
-  background-color: transparent;
-  background-image: none;
-  border-radius: 4px;
-  transition: all 0.3s;
-  cursor: text;
+    outline: none;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 5px;
+    font-size: 16px;
+    font-weight: bold;
+    font-variant: tabular-nums;
+    list-style: none;
+    font-feature-settings: "tnum";
+    position: relative;
+    display: inline-block;
+    width: 60%;
+    height: 32px;
+    border: none;
+    line-height: 1.2;
+    background-color: transparent;
+    background-image: none;
+    border-radius: 4px;
+    transition: all 0.3s;
+    cursor: text;
 }
 
 .cdx-collapse-title[placeholder]:empty:before {
-  content: attr(placeholder);
-  color: grey;
-  font-style: italic;
+    content: attr(placeholder);
+    color: grey;
+    font-style: italic;
 }
 
 .cdx-collapse-toggle {
-  display: block;
-  transition: all 0.25s ease-out;
-  cursor: pointer;
+    display: block;
+    transition: all 0.25s ease-out;
+    cursor: pointer;
 }
 
 .cdx-collapse-toggle::before {
-  content: " ";
-  display: inline-block;
-  border-top: 5px solid transparent;
-  border-bottom: 5px solid transparent;
-  border-left: 6px solid currentColor;
-  vertical-align: middle;
-  margin-right: 15px;
-  margin-top: -2px;
-  cursor: pointer;
-  transform: translateY(-1px);
-  transition: transform 0.3s ease-out;
+    content: " ";
+    display: inline-block;
+    border-top: 5px solid transparent;
+    border-bottom: 5px solid transparent;
+    border-left: 6px solid currentColor;
+    vertical-align: middle;
+    margin-right: 15px;
+    margin-top: -2px;
+    cursor: pointer;
+    transform: translateY(-1px);
+    transition: transform 0.3s ease-out;
 }
 
 .cdx-collapse-toggle-checked {
-  transform: rotate(90deg) translate(5px, 5px);
+    transform: rotate(90deg) translate(5px, 5px);
 }
 
 .cdx-collapse-content {
-  max-height: 0px;
-  overflow: hidden;
-  transition: max-height 0.3s cubic-bezier(0.6, -0.28, 0.74, 0.05);
+    max-height: 0px;
+    overflow: hidden;
+    transition: max-height 0.3s cubic-bezier(0.6, -0.28, 0.74, 0.05);
 }
 
 .cdx-collapse-content-checked {
-  max-height: 350px;
+    max-height: 350px;
 }
 
 .cdx-collapse-content .content-inner {
-  position: relative;
-  font-size: 1em;
-  border: 1px solid rgba(201,201,204,.48);
-  margin: 0;
-  padding: 6px 0 26px 22px;
-  line-height: 1.6em;
-  outline: none;
-  cursor: text;
-  width: 100%;
+    position: relative;
+    font-size: 1em;
+    border-left: 1px dashed;
+    border-left-color: #dddfe2;
+    margin-left: 6px;
+    padding: 6px 0;
+    padding-left: 22px;
+    padding-bottom: 26px;
+    line-height: 1.6em;
+    outline: none;
+    cursor: text;
 }
 
 .cdx-collapse-content .content-inner[placeholder]:empty:before {
-  content: attr(placeholder);
-  color: grey;
-  font-style: italic;
+    content: attr(placeholder);
+    color: grey;
+    font-style: italic;
 }
