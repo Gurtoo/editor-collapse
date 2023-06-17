@@ -36,6 +36,8 @@ export default class Collapse {
   constructor({ data, config, api }) {
     this.api = api;
 
+		this.renderedElement = null;
+
 		const localData = {
 			...data,
 			mode: 'row'
@@ -60,23 +62,6 @@ export default class Collapse {
 
   setData(data) {
     this._data = { ...this._data, ...data };
-  }
-
-	static get pasteConfig() {
-		return {
-			tags: ["text/plain", "text/html", "text/rtf", "Files"]
-		}
-	}
-
-	onPaste(event){
-		console.log(event, 'onPaste')
-    // switch (event.type){
-    //   case 'tag':
-    //     const imgTag = event.detail.data;
-		//
-    //     this._createImage(imgTag.src);
-    //     break;
-    // }
   }
 
 	static get sanitize(){
@@ -106,6 +91,18 @@ export default class Collapse {
     };
   }
 
+	handlePaste(event) {
+		event.preventDefault();
+		const text = event.clipboardData.getData('text/plain');
+		this.data.text = text;
+
+		// paste work by div
+		const quote = this.renderedElement.querySelector(`.${this.CSS.text}`);
+		if (quote) {
+			quote.innerText = text;
+		}
+	}
+
   /**
    * Return Tool's view
    * @returns {HTMLDivElement}
@@ -113,6 +110,11 @@ export default class Collapse {
    */
   render() {
     this.element = this.ui.drawView(this._data);
+
+		this.renderedElement = this.element;
+
+		this.api.listeners.on(this.renderedElement, 'paste', (event) => this.handlePaste(event));
+
     return this.element;
   }
 
