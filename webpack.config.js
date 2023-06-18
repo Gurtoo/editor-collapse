@@ -34,7 +34,11 @@ module.exports = {
       },
       {
         test: /\.svg$/,
-        loader: "svg-inline-loader?removeSVGTagAttrs=false"
+				use: [
+					{
+						loader: 'raw-loader',
+					},
+				],
       }
     ]
   },
