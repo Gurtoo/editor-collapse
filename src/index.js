@@ -231,7 +231,7 @@ export default class Collapse {
 	static get toolbox() {
 		return {
 			icon: `
-				<svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+				<svg class="cdx-collapse-svg" width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
 					<path d="M5.6001 2.39844C4.4951 2.39844 3.6001 3.29344 3.6001 4.39844V20.3984C3.6001 21.5034 4.4951 22.3984 5.6001 22.3984H11.6001C12.1524 22.3984 12.6001 21.9507 12.6001 21.3984C12.6001 20.8462 12.1524 20.3984 11.6001 20.3984H5.6001V16.3984H19.6001V14.3984H5.6001V10.3984H17.6001V14.3984L19.6001 16.3984V4.39844C19.6001 3.29344 18.7051 2.39844 17.6001 2.39844H5.6001ZM5.6001 4.39844H17.6001V8.39844H5.6001V4.39844Z" stroke-width="0" fill="#007BFF"/>
 					<path d="M17.5391 16.2695L15.2695 18.5391L13 16.2695" stroke="#007BFF" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
 				</svg>
