@@ -69,14 +69,21 @@ export default class Collapse {
 		}
 	}
 
+	static get pasteConfig() {
+		return false;
+	}
+
 	/**
 	 * Handle the paste event and update the content
 	 * @param {ClipboardEvent} event - The paste event
 	 * @private
 	 */
 	handlePaste(event) {
+		event.preventDefault();
 		const clipboardData = event.clipboardData || window.clipboardData;
 		const pastedText = clipboardData.getData("text");
+
+		if (!pastedText.match(/\n/)) return;
 
 		// Update the content with the pasted text
 		this.setData({ content: pastedText });
@@ -130,6 +137,7 @@ export default class Collapse {
 
 		// Attach event listeners for paste and text change
 		this.element.addEventListener("paste", this.handlePaste.bind(this));
+
 		this.ui?.contentInput?.addEventListener("input", this.handleTextChange.bind(this));
 
 		return this.element;
