@@ -52,7 +52,7 @@ export default class Collapse {
 		this._initListeners();
 
 		this.setData = setData;
-		this.isFolded = false;
+		this.isFolded = true;
 	}
 
 	/**
@@ -126,6 +126,7 @@ export default class Collapse {
 	 * @memberof ColumnCollapse
 	 */
 	_assignData(data) {
+		console.log(data, 1)
 		this._data = data;
 		const { title, content } = this._data;
 
@@ -161,7 +162,7 @@ export default class Collapse {
 	}
 
 	get data() {
-		const title = this.nodes.title.innerHTML;
+		const title = this.nodes.title.value;
 		const content = this.nodes.content.innerHTML;
 		const data = { title, content };
 
