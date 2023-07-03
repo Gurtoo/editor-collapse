@@ -83,8 +83,6 @@ export default class Collapse {
 		const clipboardData = event.clipboardData || window.clipboardData;
 		const pastedText = clipboardData.getData("text");
 
-		if (!pastedText.match(/\n/)) return;
-
 		// Update the content with the pasted text
 		this.setData({ content: pastedText });
 
