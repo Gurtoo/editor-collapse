@@ -126,7 +126,6 @@ export default class Collapse {
 	 * @memberof ColumnCollapse
 	 */
 	_assignData(data) {
-		console.log(data, 1)
 		this._data = data;
 		const { title, content } = this._data;
 
